@@ -1,7 +1,7 @@
-var dc = require('revelation-channel')()
+var flockCoreChannel = require('@flockcore/channel')()
 var net = require('net')
 
-dc.on('peer', function (key, peer) {
+flockCoreChannel.on('peer', function (key, peer) {
   var socket = net.connect(peer.port, peer.host)
 
   socket.on('data', function (data) {
@@ -16,4 +16,4 @@ dc.on('peer', function (key, peer) {
   })
 })
 
-dc.join('hello-world-server')
+flockCoreChannel.join('greetings-martian-server')

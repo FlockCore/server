@@ -1,11 +1,11 @@
-var createServer = require('../')
+var createFlockServer = require('../')
 
-var server = createServer(function (socket) {
+var createFlockServer = createServer(function (socket) {
   console.log('New connection!')
-  socket.write('Hello, World!\n')
+  socket.write('Greetings, Martian!\n')
   socket.end()
 })
 
-server.listen('hello-world-server', 8080, function () {
+createFlockServer.listen('greetings-martian-server', 8080, function () {
   console.log('Now listening ...')
 })

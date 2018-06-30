@@ -1,13 +1,13 @@
-var dc = require('revelation-channel')
+var flockCoreChannel = require('@flockcore/channel')
 var net = require('net')
 var utp = require('utp-native')
 var events = require('events')
 var inherits = require('util').inherits
 
-module.exports = Server
+module.exports = FlockCoreFlockCoreServer
 
-function Server (opts, onconn) {
-  if (!(this instanceof Server)) return new Server(opts, onconn)
+function FlockCoreServer (opts, onconn) {
+  if (!(this instanceof FlockCoreServer)) return new FlockCoreServer(opts, onconn)
   events.EventEmitter.call(this)
 
   if (typeof opts === 'function') {
@@ -28,27 +28,27 @@ function Server (opts, onconn) {
   this._actuallyListening = false
 
   this.listening = false
-  this.tcp = net.createServer(onconnection)
+  this.tcp = net.createFlockCoreServer(onconnection)
   this.utp = opts.socket ? opts.socket.on('connection', onconnection) : null
-  this.channel = dc(opts)
+  this.channel = flockCoreChannel(opts)
 
   function onconnection (socket) {
     self.emit('connection', socket, {type: this === self.tcp ? 'tcp' : 'utp'})
   }
 }
 
-inherits(Server, events.EventEmitter)
+inherits(FlockCoreServer, events.EventEmitter)
 
-Server.prototype.address = function () {
+FlockCoreServer.prototype.address = function () {
   return this.tcp.address()
 }
 
-Server.prototype._whenListening = function (cb) {
+FlockCoreServer.prototype._whenListening = function (cb) {
   if (this._actuallyListening) cb()
   this._onlistening.push(cb)
 }
 
-Server.prototype._listen = function (port) {
+FlockCoreServer.prototype._listen = function (port) {
   var self = this
   var tcpListening = false
 
@@ -96,7 +96,7 @@ Server.prototype._listen = function (port) {
   }
 }
 
-Server.prototype.close = function (onclose) {
+FlockCoreServer.prototype.close = function (onclose) {
   if (!this.listening) return process.nextTick(onclose || noop)
 
   var self = this
@@ -122,15 +122,15 @@ Server.prototype.close = function (onclose) {
   })
 }
 
-Server.prototype.leave = function (key) {
+FlockCoreServer.prototype.leave = function (key) {
   this.channel.leave(key)
 }
 
-Server.prototype.join = function (key) {
+FlockCoreServer.prototype.join = function (key) {
   this.channel.join(key, this.address().port)
 }
 
-Server.prototype.listen = function (key, port, onlistening) {
+FlockCoreServer.prototype.listen = function (key, port, onlistening) {
   if (typeof port === 'function') return this.listen(key, 0, port)
   if (!this.listening) this._listen(port || 0)
 
