@@ -1,0 +1,24 @@
+{
+  "name": "@flockcore/server",
+  "version": "0.1.1",
+  "description": "FlockCore Server Announced Over The dWeb Network As A Revelation Channel.",
+  "contributors": [
+    "Jared Rice Sr. <jared@dwebs.io>",
+    "Distributed Webs Project, LLC. <labs@distributedwebs.org>"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "test": "standard"
+  },
+  "dependencies": {
+    "@flockcore/channel": "flockcore/channel#master",
+    "utp-native": "^1.6.0"
+  },
+  "devDependencies": {
+    "standard": "^10.0.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
