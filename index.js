@@ -4,7 +4,7 @@ var utp = require('utp-native')
 var events = require('events')
 var inherits = require('util').inherits
 
-module.exports = FlockCoreFlockCoreServer
+module.exports = FlockCoreServer
 
 function FlockCoreServer (opts, onconn) {
   if (!(this instanceof FlockCoreServer)) return new FlockCoreServer(opts, onconn)
