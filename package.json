@@ -1,6 +1,6 @@
 {
   "name": "@flockcore/server",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "FlockCore Server Announced Over The dWeb Network As A Revelation Channel.",
   "contributors": [
     "Jared Rice Sr. <jared@dwebs.io>",
@@ -12,7 +12,7 @@
     "test": "standard"
   },
   "dependencies": {
-    "@flockcore/channel": "0.1.7",
+    "@flockcore/channel": "0.1.8",
     "utp-native": "^1.6.0"
   },
   "devDependencies": {
