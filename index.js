@@ -28,7 +28,7 @@ function FlockCoreServer (opts, onconn) {
   this._actuallyListening = false
 
   this.listening = false
-  this.tcp = net.createFlockCoreServer(onconnection)
+  this.tcp = net.createServer(onconnection)
   this.utp = opts.socket ? opts.socket.on('connection', onconnection) : null
   this.channel = flockCoreChannel(opts)
 
